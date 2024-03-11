@@ -1,4 +1,4 @@
-package Entity;
+package mybatis.com.mybatis.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +18,5 @@ public class StudentEntity {
     private String lastName;
     private String gender;
     private Integer age;
-    private List<SubjectEntity> subjectEntityList;
+   // private List<SubjectEntity> subjectEntityList;
 }
