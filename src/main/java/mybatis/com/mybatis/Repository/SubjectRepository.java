@@ -5,5 +5,5 @@ import mybatis.com.mybatis.Entity.SubjectEntity;
 import java.util.List;
 
 public interface SubjectRepository {
-    //List<SubjectEntity> getSubjects();
+    List<SubjectEntity> getSubjects();
 }

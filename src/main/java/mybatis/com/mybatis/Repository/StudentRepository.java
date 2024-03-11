@@ -8,5 +8,5 @@ public interface StudentRepository {
     List<StudentEntity> getStudents();
     //StudentEntity getStudentById(Integer id);
 
-  //  StudentEntity getSubjectListOfStudent(Integer id);
+    StudentEntity getSubjectListOfStudent(Integer id);
 }
