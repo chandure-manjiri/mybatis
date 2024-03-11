@@ -13,12 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentEntity {
-
     private Integer id;
     private String firstName;
     private String lastName;
     private String gender;
     private Integer age;
     private List<SubjectEntity> subjectEntityList;
-
 }
