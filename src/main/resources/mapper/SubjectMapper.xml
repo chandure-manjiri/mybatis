@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mybatis.com.mybatis.Repository.SubjectRepository" >
+
+    <resultMap id="SubjectResultMap" type="mybatis.com.mybatis.Entity.SubjectEntity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="teacher_id" property="teacherId"/>
+    </resultMap>
+
+    <select id="getSubjects" resultMap="SubjectResultMap">
+        select subject.id, subject.name, subject.teacher_id from
+        subject
+    </select>
+
+</mapper>

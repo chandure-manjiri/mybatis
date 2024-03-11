@@ -17,5 +17,35 @@
                student.gender, student.age FROM student
     </select>
 
+    <resultMap id="StudentSubjectResultMap" type="mybatis.com.mybatis.Entity.StudentEntity" >
+        <id column="id" property="id"/>
+        <result column="first_name" property="firstName"/>
+        <result column="last_name" property="lastName"/>
+        <result column="gender" property="gender"/>
+        <result column="age" property="age"/>
+        <collection property="subjectEntityList" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
+                    column="id"
+                    select="selectSubjectFromStudentId" />
+    </resultMap>
+    
+    <resultMap id="SubjectResultMap" type="mybatis.com.mybatis.Entity.SubjectEntity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+<!--    teacher should return // after mapper only teacher name sholud be available   -->
+    </resultMap>
+    
+    <select id="getSubjectListOfStudent"
+              resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer">
+        SELECT student.id, student.first_name, student.last_name,
+        student.gender, student.age FROM student WHERE student.id = #{id}
+    </select>
+
+    <select id="selectSubjectFromStudentId"
+            parameterType="java.lang.Integer"
+            resultMap="SubjectResultMap"
+            resultType="mybatis.com.mybatis.Entity.SubjectEntity">
+         select subject.id, subject.name from subject where id in
+          (select sub_id from stud_sub where stud_id = #{id})
+    </select>
 
 </mapper>
