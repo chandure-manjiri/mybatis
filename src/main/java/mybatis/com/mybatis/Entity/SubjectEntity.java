@@ -1,11 +1,12 @@
 package mybatis.com.mybatis.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 @Data
 public class SubjectEntity {
     private Integer id;
     private String name;
-    private Integer teacherId;
+    @JsonBackReference
     private TeacherEntity teacherEntity;
 }

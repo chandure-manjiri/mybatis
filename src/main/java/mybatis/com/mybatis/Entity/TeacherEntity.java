@@ -1,6 +1,11 @@
 package mybatis.com.mybatis.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class TeacherEntity {
@@ -11,5 +16,6 @@ public class TeacherEntity {
     private Integer age;
     private String phoneNumber;
     private String email;
-    private SubjectEntity subjectEntity;
+    @JsonManagedReference
+    private List<SubjectEntity> subjectEntityList;
 }

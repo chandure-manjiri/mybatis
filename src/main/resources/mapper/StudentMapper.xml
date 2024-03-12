@@ -3,16 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mybatis.com.mybatis.Repository.StudentRepository" >
 
-    <resultMap id="StudentResultMap" type="mybatis.com.mybatis.Entity.StudentEntity" >
-           <id column="id" property="id"/>
-           <result column="first_name" property="firstName"/>
-           <result column="last_name" property="lastName"/>
-           <result column="gender" property="gender"/>
-           <result column="age" property="age"/>
-       </resultMap>
+<!--    <resultMap id="StudentResultMap" type="mybatis.com.mybatis.Entity.StudentEntity" >-->
+<!--           <id column="id" property="id"/>-->
+<!--           <result column="first_name" property="firstName"/>-->
+<!--           <result column="last_name" property="lastName"/>-->
+<!--           <result column="gender" property="gender"/>-->
+<!--           <result column="age" property="age"/>-->
+<!--       </resultMap>-->
 
     <select id="getStudents"
-            resultMap="StudentResultMap">
+            resultMap="StudentSubjectResultMap">
         SELECT student.id, student.first_name, student.last_name,
                student.gender, student.age FROM student
     </select>
@@ -34,7 +34,7 @@
 <!--    teacher should return // after mapper only teacher name sholud be available   -->
     </resultMap>
     
-    <select id="getSubjectListOfStudent"
+    <select id="getStudentById"
               resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer">
         SELECT student.id, student.first_name, student.last_name,
         student.gender, student.age FROM student WHERE student.id = #{id}
@@ -47,5 +47,22 @@
          select subject.id, subject.name from subject where id in
           (select sub_id from stud_sub where stud_id = #{id})
     </select>
+
+    <insert id="insertStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity">
+        insert into student (first_name, last_name, gender, age)
+        values (#{firstName},#{lastName},#{gender},#{age})
+    </insert>
+
+
+    <insert id="assignSubjectsToStudent" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into stud_sub(stud_id, sub_id) values
+        <foreach collection="subjectEntityList" item="subject" separator="," >
+            (#{id}, #{subject.id})
+        </foreach>
+    </insert>
+
+
+
 
 </mapper>

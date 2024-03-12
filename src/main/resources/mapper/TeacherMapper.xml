@@ -11,29 +11,29 @@
         <result column="age" property="age"/>
         <result column="phone_number" property="phoneNumber"/>
         <result column="email" property="email"/>
-        <collection property="subjectEntity" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
+        <collection property="subjectEntityList" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
                     column="id" select="selectSubjectByTeacherId"/>
     </resultMap>
 
 
-    <resultMap id="TeacherResultMapNoSubject" type="mybatis.com.mybatis.Entity.TeacherEntity" >
-        <id column="id" property="id"/>
-        <result column="first_name" property="firstName"/>
-        <result column="last_name" property="lastName"/>
-        <result column="gender" property="gender"/>
-        <result column="age" property="age"/>
-        <result column="phone_number" property="phoneNumber"/>
-        <result column="email" property="email"/>
-    </resultMap>
+<!--    <resultMap id="TeacherResultMapNoSubject" type="mybatis.com.mybatis.Entity.TeacherEntity" >-->
+<!--        <id column="id" property="id"/>-->
+<!--        <result column="first_name" property="firstName"/>-->
+<!--        <result column="last_name" property="lastName"/>-->
+<!--        <result column="gender" property="gender"/>-->
+<!--        <result column="age" property="age"/>-->
+<!--        <result column="phone_number" property="phoneNumber"/>-->
+<!--        <result column="email" property="email"/>-->
+<!--    </resultMap>-->
 
     <resultMap id = "SubjectResultMap"
                type = "mybatis.com.mybatis.Entity.SubjectEntity">
         <id property = "id" column = "id"/>
         <result property = "name" column = "name"/>
-        <result property="teacherId" column="teacher_id"/>
+<!--        <result property="teacherId" column="teacher_id"/>-->
     </resultMap>
 
-    <select id="getTeachers" resultMap="TeacherResultMapNoSubject"
+    <select id="getTeachers" resultMap="TeacherResultMap"
             resultType="mybatis.com.mybatis.Entity.TeacherEntity">
         select id,first_name, last_name, gender, age, phone_number, email
         from teacher
@@ -50,13 +50,5 @@
             resultMap="SubjectResultMap">
         select subject.id, subject.name , subject.teacher_id from subject where subject.teacher_id = #{id}
     </select>
-
-
-
-
-
-
-
-
 
 </mapper>

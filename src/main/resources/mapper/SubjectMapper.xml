@@ -6,12 +6,19 @@
     <resultMap id="SubjectResultMap" type="mybatis.com.mybatis.Entity.SubjectEntity">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="teacher_id" property="teacherId"/>
+        <association property="teacherEntity" javaType="mybatis.com.mybatis.Entity.TeacherEntity">
+            <id column="teacher_id" property="id"/>
+        </association>
     </resultMap>
 
     <select id="getSubjects" resultMap="SubjectResultMap">
         select subject.id, subject.name, subject.teacher_id from
         subject
     </select>
+
+    <insert id="insertSubject" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity">
+        insert into subject (name, teacher_id)
+        values (#{name}, #{teacherEntity.id})
+    </insert>
 
 </mapper>

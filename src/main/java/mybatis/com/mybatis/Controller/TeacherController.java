@@ -22,6 +22,7 @@ public class TeacherController {
     @GetMapping()
     public ResponseEntity<List<TeacherEntity>> getTeachers(){
        List<TeacherEntity> teacherEntities = teacherRepository.getTeachers();
+       System.out.println(teacherEntities.get(0).getSubjectEntityList());
         return new ResponseEntity<>(teacherEntities, HttpStatus.OK);
     }
 

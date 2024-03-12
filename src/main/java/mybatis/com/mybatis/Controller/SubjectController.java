@@ -6,9 +6,7 @@ import mybatis.com.mybatis.Repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,12 @@ public class SubjectController {
     public ResponseEntity<List<SubjectEntity>> getSubjects(){
        List<SubjectEntity> subjectEntities = this.subjectRepository.getSubjects();
         return new ResponseEntity<>(subjectEntities, HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public ResponseEntity<String> postSubject(@RequestBody SubjectEntity subjectEntity){
+        this.subjectRepository.insertSubject(subjectEntity);
+        String n = "created";
+        return new ResponseEntity<>(n, HttpStatus.CREATED);
     }
 }
