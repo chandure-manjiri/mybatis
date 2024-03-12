@@ -1,5 +1,6 @@
 package mybatis.com.mybatis.Controller;
 
+import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.StudentRepository;
@@ -31,9 +32,9 @@ public class StudentController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> postStudent(@RequestBody StudentEntity studentEntity){
-        this.studentService.addStudent(studentEntity);
-        return new ResponseEntity<>(n, HttpStatus.CREATED);
+    public ResponseEntity<StudentEntity> postStudent(@RequestBody StudentEntity studentEntity){
+        StudentEntity studentEntity  = this.studentService.addStudent(studentEntity);
+        return new ResponseEntity<>(studentEntity, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/subjects")

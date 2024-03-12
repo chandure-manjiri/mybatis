@@ -25,9 +25,9 @@ public class SubjectController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> postSubject(@RequestBody SubjectEntity subjectEntity){
-        this.subjectService.addSubject(subjectEntity);
-        String n = "created";
-        return new ResponseEntity<>(n, HttpStatus.CREATED);
+
+    public ResponseEntity<SubjectEntity> postSubject(@RequestBody SubjectEntity subjectRequestEntity){
+         SubjectEntity subjectResponseEntity = this.subjectService.addSubject(subjectRequestEntity);
+         return new ResponseEntity<>(subjectResponseEntity, HttpStatus.CREATED);
     }
 }

@@ -31,9 +31,8 @@ public class TeacherController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> postTeacher(@RequestBody TeacherEntity teacherEntity){
-        this.teacherService.addTeacher(teacherEntity);
-       String n = "created";
-        return new ResponseEntity<>(n, HttpStatus.CREATED);
+    public ResponseEntity<TeacherEntity> postTeacher(@RequestBody TeacherEntity teacherEntity){
+        this.teacherService.insertTeacher(teacherEntity);
+        return new ResponseEntity<>(teacherEntity, HttpStatus.CREATED);
     }
 }
