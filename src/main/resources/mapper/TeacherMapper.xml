@@ -15,7 +15,6 @@
                     column="id" select="selectSubjectByTeacherId"/>
     </resultMap>
 
-
 <!--    <resultMap id="TeacherResultMapNoSubject" type="mybatis.com.mybatis.Entity.TeacherEntity" >-->
 <!--        <id column="id" property="id"/>-->
 <!--        <result column="first_name" property="firstName"/>-->

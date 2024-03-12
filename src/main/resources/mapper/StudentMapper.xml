@@ -11,11 +11,6 @@
 <!--           <result column="age" property="age"/>-->
 <!--       </resultMap>-->
 
-    <select id="getStudents"
-            resultMap="StudentSubjectResultMap">
-        SELECT student.id, student.first_name, student.last_name,
-               student.gender, student.age FROM student
-    </select>
 
     <resultMap id="StudentSubjectResultMap" type="mybatis.com.mybatis.Entity.StudentEntity" >
         <id column="id" property="id"/>
@@ -33,6 +28,13 @@
         <result column="name" property="name"/>
 <!--    teacher should return // after mapper only teacher name sholud be available   -->
     </resultMap>
+
+
+    <select id="getStudents"
+            resultMap="StudentSubjectResultMap">
+        SELECT student.id, student.first_name, student.last_name,
+        student.gender, student.age FROM student
+    </select>
     
     <select id="getStudentById"
               resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer">
@@ -53,7 +55,6 @@
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>
 
-
     <insert id="assignSubjectsToStudent" useGeneratedKeys="true"
             keyProperty="id">
         insert into stud_sub(stud_id, sub_id) values
@@ -61,8 +62,5 @@
             (#{id}, #{subject.id})
         </foreach>
     </insert>
-
-
-
 
 </mapper>
