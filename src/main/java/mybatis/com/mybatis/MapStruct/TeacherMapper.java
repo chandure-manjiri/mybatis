@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package mybatis.com.mybatis.MapStruct;
 
 import mybatis.com.mybatis.Dto.StudentCreationDto;
@@ -59,4 +60,9 @@ public interface TeacherMapper {
     TeacherDtoForList toTeacherDtoForList(TeacherEntity teacherEntity);
 
     List<TeacherDtoForList> toDtoList(List<TeacherEntity> teacherEntityList);
+=======
+package mybatis.com.mybatis.mapper;
+
+public interface TeacherMapper {
+>>>>>>> 9a94f47 (changed in mapper xml file for getting entity after saving to database in same query)
 }

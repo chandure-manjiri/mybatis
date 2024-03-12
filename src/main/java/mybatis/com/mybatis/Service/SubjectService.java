@@ -29,7 +29,7 @@ public class SubjectService {
         return this.subjectMapper.toDtoList(subjectEntityList);
     }
 
-    public SubjectDto insertSubject(SubjectCreationDto subjectCreationDto){
+    public SubjectDto insertSubject(SubjectCreationDto subjectCreationDto) {
         SubjectEntity subjectEntity = this.subjectMapper.toSubjectEntity(subjectCreationDto);
         this.subjectRepository.insertSubject(subjectEntity);
         return this.subjectMapper.toDto(subjectEntity);

@@ -38,11 +38,4 @@ public class TeacherController {
         TeacherDto teacherDto = this.teacherService.insertTeacher(teacherCreationDto);
         return new ResponseEntity<>(teacherDto, HttpStatus.CREATED);
    }
-
-    @GetMapping("/{id}/subjects")
-    public ResponseEntity<TeacherEntity> getStudentWithSubjectList(@PathVariable(name = "id") Integer id){
-        TeacherEntity teacherEntity = this.teacherService.getTeacherById(id);
-        return new ResponseEntity<>(teacherEntity, HttpStatus.OK);
-    }
-
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package mybatis.com.mybatis.MapStruct;
 
 import mybatis.com.mybatis.Dto.SubjectCreationDto;
@@ -25,4 +26,12 @@ public interface SubjectMapper {
     SubjectEntity toSubjectEntity(SubjectCreationDto subjectCreationDto);
 
     List<SubjectEntity> toEntityList(List<SubjectDto> subjectDtoList);
+=======
+package mybatis.com.mybatis.mapper;
+
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface SubjectMapper {
+>>>>>>> 9a94f47 (changed in mapper xml file for getting entity after saving to database in same query)
 }

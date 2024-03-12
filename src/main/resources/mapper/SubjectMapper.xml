@@ -18,7 +18,7 @@
 
 
     <insert id="insertSubject" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity" keyColumn="id">
-       insert into subject (name, teacher_id)
+        insert into subject (name, teacher_id)
         values (#{name}, #{teacherEntity.id})
     </insert>
 
