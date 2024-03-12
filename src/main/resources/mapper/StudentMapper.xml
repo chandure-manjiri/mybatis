@@ -11,7 +11,6 @@
 <!--           <result column="age" property="age"/>-->
 <!--       </resultMap>-->
 
-
     <resultMap id="StudentSubjectResultMap" type="mybatis.com.mybatis.Entity.StudentEntity" >
         <id column="id" property="id"/>
         <result column="first_name" property="firstName"/>
@@ -54,6 +53,7 @@
         insert into student (first_name, last_name, gender, age)
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>
+
 
     <insert id="assignSubjectsToStudent" useGeneratedKeys="true"
             keyProperty="id">
