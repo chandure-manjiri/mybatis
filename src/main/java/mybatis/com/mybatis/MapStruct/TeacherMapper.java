@@ -1,6 +1,4 @@
 package mybatis.com.mybatis.MapStruct;
-
-import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Dto.TeacherCreationDto;
 import mybatis.com.mybatis.Dto.TeacherDto;
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
@@ -59,5 +57,4 @@ public interface TeacherMapper {
     TeacherDtoForList toTeacherDtoForList(TeacherEntity teacherEntity);
 
     List<TeacherDtoForList> toDtoList(List<TeacherEntity> teacherEntityList);
-
 }

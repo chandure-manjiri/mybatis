@@ -1,10 +1,8 @@
 package mybatis.com.mybatis.Controller;
-
 import mybatis.com.mybatis.Dto.TeacherCreationDto;
 import mybatis.com.mybatis.Dto.TeacherDto;
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Service.TeacherService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +38,4 @@ public class TeacherController {
         TeacherDto teacherDto = this.teacherService.insertTeacher(teacherCreationDto);
         return new ResponseEntity<>(teacherDto, HttpStatus.CREATED);
    }
-
 }

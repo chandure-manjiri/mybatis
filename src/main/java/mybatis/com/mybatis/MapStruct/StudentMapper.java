@@ -11,6 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface StudentMapper {
 
+
     @Mapping(target="firstName", expression = "java(convertToFirstName(studentCreationDto))")
     @Mapping(target="lastName", expression = "java(convertToLastName(studentCreationDto))")
     @Mapping(source = "gender", target = "gender")
@@ -24,9 +25,8 @@ public interface StudentMapper {
         return studentCreationDto.getFullName().substring(0, studentCreationDto.getFullName().indexOf(" "));
     }
 
-
    default String convertToLastName(StudentCreationDto studentCreationDto){
-        if (studentCreationDto.getFullName() == null){
+       if (studentCreationDto.getFullName() == null){
             return null;
         }
         return studentCreationDto.getFullName().substring(studentCreationDto.getFullName().indexOf(" ") + 1);

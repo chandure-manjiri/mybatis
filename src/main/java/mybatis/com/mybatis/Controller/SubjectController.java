@@ -2,10 +2,6 @@ package mybatis.com.mybatis.Controller;
 
 import mybatis.com.mybatis.Dto.SubjectCreationDto;
 import mybatis.com.mybatis.Dto.SubjectDto;
-import mybatis.com.mybatis.Entity.StudentEntity;
-import mybatis.com.mybatis.Entity.SubjectEntity;
-import mybatis.com.mybatis.Repository.SubjectRepository;
-import mybatis.com.mybatis.Service.StudentService;
 import mybatis.com.mybatis.Service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
