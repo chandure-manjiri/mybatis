@@ -3,6 +3,8 @@ package mybatis.com.mybatis.Controller;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.SubjectRepository;
+import mybatis.com.mybatis.Service.StudentService;
+import mybatis.com.mybatis.Service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,7 @@ import java.util.List;
 public class SubjectController {
 
     @Autowired
-    SubjectRepository subjectRepository;
-
+    SubjectService subjectService;
     @GetMapping()
     public ResponseEntity<List<SubjectEntity>> getSubjects(){
        List<SubjectEntity> subjectEntities = this.subjectRepository.findAllSubjects();

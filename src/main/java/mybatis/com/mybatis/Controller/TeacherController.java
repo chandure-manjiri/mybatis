@@ -3,6 +3,7 @@ package mybatis.com.mybatis.Controller;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.Repository.TeacherRepository;
+import mybatis.com.mybatis.Service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    TeacherRepository teacherRepository;
+    TeacherService teacherService;
     @GetMapping()
     public ResponseEntity<List<TeacherEntity>> getTeachers(){
        List<TeacherEntity> teacherEntities = teacherRepository.findAllTeachers();
