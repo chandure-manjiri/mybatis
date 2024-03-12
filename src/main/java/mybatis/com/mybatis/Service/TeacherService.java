@@ -1,11 +1,15 @@
 package mybatis.com.mybatis.Service;
 
+<<<<<<< HEAD
 import mybatis.com.mybatis.Dto.TeacherCreationDto;
 import mybatis.com.mybatis.Dto.TeacherDto;
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.MapStruct.TeacherMapper;
+=======
+import mybatis.com.mybatis.Entity.TeacherEntity;
+>>>>>>> 94adc1f (Services added & teacherInsert method & url added)
 import mybatis.com.mybatis.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,10 +37,9 @@ public class TeacherService {
        return this.teacherMapper.toDto(teacherEntity);
     }
 
-    public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto){
-           TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
-           this.teacherRepository.insertTeacher(teacherEntity);
-           return this.teacherMapper.toDto(teacherEntity);
+    public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto) {
+        TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
+        this.teacherRepository.insertTeacher(teacherEntity);
+        return this.teacherMapper.toDto(teacherEntity);
     }
-
 }

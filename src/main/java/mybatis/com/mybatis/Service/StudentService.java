@@ -8,6 +8,13 @@ import mybatis.com.mybatis.Repository.StudentRepository;
 import mybatis.com.mybatis.MapStruct.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import mybatis.com.mybatis.Entity.StudentEntity;
+import mybatis.com.mybatis.Entity.SubjectEntity;
+import mybatis.com.mybatis.Repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
