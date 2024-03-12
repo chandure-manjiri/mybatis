@@ -50,7 +50,7 @@
         select subject.id, subject.name , subject.teacher_id from subject where subject.teacher_id = #{id}
     </select>
 
-    <insert id="addTeacher" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.TeacherEntity">
+    <insert id="addTeacher" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.TeacherEntity" keyColumn="id">
         insert into teacher (first_name, last_name, gender, age, phone_number, email)
         values (#{firstName},#{lastName},#{gender},#{age}, #{phoneNumber}, #{email})
     </insert>

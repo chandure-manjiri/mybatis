@@ -18,8 +18,10 @@ public class SubjectService {
         return this.subjectRepository.getSubjects();
     }
 
-    public void insertSubject(SubjectEntity subjectEntity){
+    public SubjectEntity insertSubject(SubjectEntity subjectEntity){
+
         this.subjectRepository.insertSubject(subjectEntity);
+        return subjectEntity;
     }
 
 }
