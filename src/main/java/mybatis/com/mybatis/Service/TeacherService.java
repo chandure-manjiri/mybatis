@@ -1,5 +1,6 @@
 package mybatis.com.mybatis.Service;
 
+import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,10 @@ public class TeacherService {
        return teacherRepository.getTeacherById(id);
     }
 
-    public void insertTeacher(TeacherEntity teacherEntity){
-        this.teacherRepository.insertTeacher(teacherEntity);
+    public TeacherEntity insertTeacher(TeacherEntity teacherEntity){
+
+           this.teacherRepository.insertTeacher(teacherEntity);
+           return teacherEntity;
     }
 
 }
