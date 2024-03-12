@@ -24,7 +24,7 @@ public class SubjectController {
     public ResponseEntity<List<SubjectDto>> getSubjects(){
         List<SubjectDto> subjectDtoList = this.subjectService.getSubjects();
         return new ResponseEntity<>(subjectDtoList, HttpStatus.OK);
-  }
+   }
 
      @PostMapping()
     public ResponseEntity<SubjectDto> postSubject(@RequestBody SubjectCreationDto subjectCreationDto){

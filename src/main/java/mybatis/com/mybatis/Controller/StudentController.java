@@ -42,8 +42,10 @@ public class StudentController {
     }
 
     @PostMapping("/{id}/subjects")
-    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList){
-         StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
-         return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList)
+        {
+            StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
+            return new ResponseEntity<>(studentDto, HttpStatus.OK);
+
     }
 }

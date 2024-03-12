@@ -1,9 +1,13 @@
 package mybatis.com.mybatis.Service;
 
+<<<<<<< HEAD
 import mybatis.com.mybatis.Dto.SubjectCreationDto;
 import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.MapStruct.SubjectMapper;
+=======
+import mybatis.com.mybatis.Entity.SubjectEntity;
+>>>>>>> 94adc1f (Services added & teacherInsert method & url added)
 import mybatis.com.mybatis.Repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

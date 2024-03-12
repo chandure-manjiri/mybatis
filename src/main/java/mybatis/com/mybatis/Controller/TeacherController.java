@@ -40,4 +40,5 @@ public class TeacherController {
         TeacherDto teacherDto = this.teacherService.insertTeacher(teacherCreationDto);
         return new ResponseEntity<>(teacherDto, HttpStatus.CREATED);
    }
+
 }

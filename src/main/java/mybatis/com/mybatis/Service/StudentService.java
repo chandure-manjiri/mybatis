@@ -13,6 +13,7 @@ import mybatis.com.mybatis.Dto.StudentDto;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.SubjectDto;
 
+
 import java.util.List;
 
 @Service
@@ -44,7 +45,7 @@ public class StudentService {
         return this.studentMapper.toDto(studentEntity);
     }
 
-    public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList){
+    public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList) {
         List<SubjectEntity> subjectEntityList = this.subjectMapper.toEntityList(subjectDtoList);
         this.studentRepository.assignSubjectsToStudent(id, subjectEntityList);
         StudentEntity studentEntity = this.studentRepository.findStudentById(id);
