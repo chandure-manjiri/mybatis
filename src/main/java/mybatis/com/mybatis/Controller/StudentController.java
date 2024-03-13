@@ -1,6 +1,9 @@
 package mybatis.com.mybatis.Controller;
 
 import mybatis.com.mybatis.Dto.StudentCreationDto;
+import mybatis.com.mybatis.Dto.StudentDto;
+import mybatis.com.mybatis.Dto.StudentDtoForList;
+import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.StudentRepository;
@@ -20,16 +23,16 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping()
-    public ResponseEntity< List<StudentEntity>> getStudents(){
-        List<StudentEntity> studentEntities = this.studentService.findAllStudents();
-        return new ResponseEntity<>(studentEntities, HttpStatus.OK);
+    public ResponseEntity< List<StudentDtoForList>> getStudents(){
+        List<StudentDtoForList> studentDtoList = this.studentService.getAllStudent();
+        return new ResponseEntity<>(studentDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<StudentEntity> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
-        StudentEntity studentEntity= this.studentService.findStudentById(id);
-        return new ResponseEntity<>(studentEntity, HttpStatus.OK);
-    }
+    public ResponseEntity<StudentDto> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
+        StudentDto studentDto= this.studentService.getStudentById(id);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+   }
 
     @PostMapping()
     public ResponseEntity<StudentEntity> postStudent(@RequestBody StudentEntity studentEntity){
@@ -38,9 +41,9 @@ public class StudentController {
     }
 
     @PostMapping("/{id}/subjects")
-    public ResponseEntity<String> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectEntity> subjectEntityList){
-        this.studentService.assignSubjectsToStudent(id, subjectEntityList);
-        String n = "get assigned";
-        return new ResponseEntity<>(n, HttpStatus.OK);
+    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList){
+         StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
+
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 }

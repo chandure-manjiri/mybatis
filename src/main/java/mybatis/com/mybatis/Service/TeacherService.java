@@ -1,7 +1,11 @@
 package mybatis.com.mybatis.Service;
 
+import mybatis.com.mybatis.Dto.TeacherCreationDto;
+import mybatis.com.mybatis.Dto.TeacherDto;
+import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
+import mybatis.com.mybatis.MapStruct.TeacherMapper;
 import mybatis.com.mybatis.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +18,25 @@ public class TeacherService {
     @Autowired
     TeacherRepository teacherRepository;
 
-    public List<TeacherEntity> getTeachers(){
-        return this.teacherRepository.getTeachers();
+    @Autowired
+    TeacherMapper teacherMapper;
+
+    public List<TeacherDtoForList> getTeachers(){
+
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachers();
+        return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
-    public TeacherEntity getTeacherById(Integer id){
-       return teacherRepository.getTeacherById(id);
+    public TeacherDto getTeacherById(Integer id){
+
+       TeacherEntity teacherEntity = teacherRepository.getTeacherById(id);
+       return this.teacherMapper.toDto(teacherEntity);
     }
 
-    public TeacherEntity insertTeacher(TeacherEntity teacherEntity){
-
+    public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto){
+           TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
            this.teacherRepository.insertTeacher(teacherEntity);
-           return teacherEntity;
+           return this.teacherMapper.toDto(teacherEntity);
     }
 
 }
