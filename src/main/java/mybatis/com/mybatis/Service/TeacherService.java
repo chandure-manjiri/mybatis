@@ -85,7 +85,7 @@ public class TeacherService {
     }
 
     public List<TeacherDtoForList> getTeachersBySubject(String subject) {
-        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersBySubject(subject);
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeacherBySubject(subject);
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 }

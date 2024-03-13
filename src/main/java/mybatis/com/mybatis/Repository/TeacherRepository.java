@@ -2,6 +2,7 @@ package mybatis.com.mybatis.Repository;
 
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Entity.TeacherEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,24 +13,24 @@ public interface TeacherRepository {
 
     void insertTeacher(TeacherEntity teacherEntity);
 
-    List<TeacherEntity> getTeachersByGenderByMinAgeByMaxAge(String gender, Integer minAge, Integer maxAge);
-    List<TeacherEntity> getTeachersByGenderByAge(String gender, Integer age);
+    List<TeacherEntity> getTeachersByGenderByMinAgeByMaxAge(@Param("gender")String gender, @Param("minAge")Integer minAge, @Param("maxAge")Integer maxAge);
+    List<TeacherEntity> getTeachersByGenderByAge(@Param("gender")String gender,@Param("age") Integer age);
 
-    List<TeacherEntity> getTeachersByGenderByMinAge(String gender, Integer minAge);
+    List<TeacherEntity> getTeachersByGenderByMinAge(@Param("gender")String gender, @Param("minAge")Integer minAge);
 
-    List<TeacherEntity> getTeachersByGenderByMaxAge(String gender, Integer maxAge);
+    List<TeacherEntity> getTeachersByGenderByMaxAge(@Param("gender")String gender, @Param("maxAge")Integer maxAge);
 
-    List<TeacherEntity> getTeachersByGender(String gender);
+    List<TeacherEntity> getTeachersByGender(@Param("gender")String gender);
 
-    List<TeacherEntity> getTeachersBetweenMinAgeAndMaxAge(Integer minAge, Integer maxAge);
+    List<TeacherEntity> getTeachersBetweenMinAgeAndMaxAge(@Param("minAge")Integer minAge,@Param("maxAge")Integer maxAge);
 
-    List<TeacherEntity> getTeachersByMinAge(Integer minAge);
+    List<TeacherEntity> getTeachersByMinAge(@Param("minAge")Integer minAge);
 
-    List<TeacherEntity> getTeachersByMaxAge(Integer maxAge);
+    List<TeacherEntity> getTeachersByMaxAge(@Param("maxAge")Integer maxAge);
 
-    List<TeacherEntity> getTeachersByAge(Integer age);
+    List<TeacherEntity> getTeachersByAge(@Param("age")Integer age);
 
-    List<TeacherEntity> getTeachersBySubject(String subject);
+    List<TeacherEntity> getTeacherBySubject(@Param("subject") String subject);
 
 }
 

@@ -50,6 +50,61 @@
         select subject.id, subject.name , subject.teacher_id from subject where subject.teacher_id = #{id}
     </select>
 
+    <select id="getTeachersByGenderByMinAgeByMaxAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where gender = #{gender} and age >= #{minAge} and #{maxAge} >= age
+    </select>
+
+    <select id="getTeachersByGenderByAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where gender = #{gender} and age = #{age}
+    </select>
+
+    <select id="getTeachersByGenderByMinAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where gender = #{gender} and age >= #{minAge}
+    </select>
+
+    <select id="getTeachersByGenderByMaxAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where gender = #{gender} and  #{maxAge} >= age
+    </select>
+
+    <select id="getTeachersByGender" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where gender = #{gender}
+    </select>
+
+    <select id="getTeachersBetweenMinAgeAndMaxAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where age between #{minAge} and #{maxAge}
+    </select>
+
+    <select id="getTeachersByMinAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where age >= #{minAge}
+    </select>
+
+    <select id="getTeachersByMaxAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where #{maxAge} >= age
+    </select>
+
+    <select id="getTeachersByAge" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where age = #{age}
+    </select>
+
+    <select id="getTeacherBySubject" parameterType="java.util.Map" resultMap="TeacherResultMap" resultType="mybatis.com.mybatis.Entity.TeacherEntity">
+        select id,first_name, last_name, gender, age, phone_number, email
+        from teacher where id in(
+          select teacher_id from subject where name = #{subject}
+        )
+    </select>
+
+
+<!--    getTeachersBySubject-->
+
     <insert id="insertTeacher" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.TeacherEntity" keyColumn="id">
         insert into teacher (first_name, last_name, gender, age, phone_number, email)
         values (#{firstName},#{lastName},#{gender}, #{age}, #{phoneNumber}, #{email})
