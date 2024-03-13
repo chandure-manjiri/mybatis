@@ -6,9 +6,6 @@
     <resultMap id="SubjectResultMap" type="mybatis.com.mybatis.Entity.SubjectEntity">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <association property="teacherEntity" javaType="mybatis.com.mybatis.Entity.TeacherEntity">
-            <id column="teacher_id" property="id"/>
-        </association>
     </resultMap>
 
     <select id="findAllSubjects" resultMap="SubjectResultMap">
