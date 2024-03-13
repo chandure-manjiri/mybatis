@@ -39,4 +39,53 @@ public class TeacherService {
            return this.teacherMapper.toDto(teacherEntity);
     }
 
+    public List<TeacherDtoForList> getTeachersByGenderByMinAgeByMaxAge(String gender, Integer minAge, Integer maxAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByGenderByMinAgeByMaxAge(gender, minAge, maxAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByGenderByAge(String gender, Integer age) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByGenderByAge(gender,age);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByGenderByMinAge(String gender, Integer minAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByGenderByMinAge(gender, minAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByGenderByMaxAge(String gender, Integer maxAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByGenderByMaxAge(gender, maxAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByGender(String gender) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByGender(gender);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersBetweenMinAgeAndMaxAge(Integer minAge, Integer maxAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersBetweenMinAgeAndMaxAge(minAge,maxAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByMinAge(Integer minAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByMinAge(minAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByMaxAge(Integer maxAge) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByMaxAge(maxAge);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersByAge(Integer age) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersByAge(age);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
+
+    public List<TeacherDtoForList> getTeachersBySubject(String subject) {
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachersBySubject(subject);
+        return this.teacherMapper.toDtoList(teacherEntityList);
+    }
 }
