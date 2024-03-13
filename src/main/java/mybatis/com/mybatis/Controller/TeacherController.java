@@ -1,5 +1,8 @@
 package mybatis.com.mybatis.Controller;
 
+import mybatis.com.mybatis.Dto.TeacherCreationDto;
+import mybatis.com.mybatis.Dto.TeacherDto;
+import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.Repository.TeacherRepository;
@@ -18,20 +21,20 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
     @GetMapping()
-    public ResponseEntity<List<TeacherEntity>> getTeachers(){
-       List<TeacherEntity> teacherEntities = this.teacherService.getTeachers();
-       System.out.println(teacherEntities.get(0).getSubjectEntityList());
-        return new ResponseEntity<>(teacherEntities, HttpStatus.OK);
+    public ResponseEntity<List<TeacherDtoForList>> getTeachers(){
+       List<TeacherDtoForList> teacherDtoList = this.teacherService.getTeachers();
+        return new ResponseEntity<>(teacherDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<TeacherEntity> getStudentWithSubjectList(@PathVariable(name = "id") Integer id){
-        TeacherEntity teacherEntity = this.teacherService.getTeacherById(id);
-        return new ResponseEntity<>(teacherEntity, HttpStatus.OK);
+    public ResponseEntity<TeacherDto> getStudentWithSubjectList(@PathVariable(name = "id") Integer id){
+        TeacherDto teacherDto = this.teacherService.getTeacherById(id);
+        return new ResponseEntity<>(teacherDto, HttpStatus.OK);
     }
 
     @PostMapping()
-    public TeacherEntity postTeacher(@RequestBody TeacherEntity teacherEntity){
-        return this.teacherService.insertTeacher(teacherEntity);
+    public ResponseEntity<TeacherDto> postTeacher(@RequestBody TeacherCreationDto teacherCreationDto){
+        TeacherDto teacherDto = this.teacherService.insertTeacher(teacherCreationDto);
+        return new ResponseEntity<>(teacherDto, HttpStatus.CREATED);
     }
 }
