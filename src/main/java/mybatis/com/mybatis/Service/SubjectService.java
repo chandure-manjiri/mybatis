@@ -4,7 +4,6 @@ import mybatis.com.mybatis.Dto.SubjectCreationDto;
 import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.MapStruct.SubjectMapper;
-
 import mybatis.com.mybatis.Repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,8 @@ public class SubjectService {
 
     public SubjectDto insertSubject(SubjectCreationDto subjectCreationDto){
        SubjectEntity subjectEntity = this.subjectMapper.toSubjectEntity(subjectCreationDto);
-        this.subjectRepository.addSubject(subjectEntity);
-        return this.subjectMapper.toDto(subjectEntity);
-   }
+       this.subjectRepository.addSubject(subjectEntity);
+       return this.subjectMapper.toDto(subjectEntity);
 
+    }
 }

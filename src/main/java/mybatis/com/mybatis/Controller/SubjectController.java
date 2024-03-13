@@ -27,4 +27,5 @@ public class SubjectController {
          SubjectDto subjectDto = this.subjectService.insertSubject(subjectCreationDto);
          return new ResponseEntity<>(subjectDto, HttpStatus.CREATED);
    }
+
 }

@@ -8,10 +8,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;
 
+
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface StudentMapper {
-
-
     @Mapping(target="firstName", expression = "java(convertToFirstName(studentCreationDto))")
     @Mapping(target="lastName", expression = "java(convertToLastName(studentCreationDto))")
     @Mapping(source = "gender", target = "gender")

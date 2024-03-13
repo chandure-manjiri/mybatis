@@ -20,15 +20,13 @@ public class TeacherService {
     TeacherMapper teacherMapper;
 
     public List<TeacherDtoForList> getTeachers(Integer minAge, Integer maxAge, String gender, String subject){
-
         List<TeacherEntity> teacherEntityList = this.teacherRepository.findAllTeachers(minAge, maxAge, gender, subject);
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
     public TeacherDto getTeacherById(Integer id){
-
-       TeacherEntity teacherEntity = teacherRepository.findTeacherById(id);
-       return this.teacherMapper.toDto(teacherEntity);
+        TeacherEntity teacherEntity = teacherRepository.findTeacherById(id);
+        return this.teacherMapper.toDto(teacherEntity);
     }
 
     public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto){
