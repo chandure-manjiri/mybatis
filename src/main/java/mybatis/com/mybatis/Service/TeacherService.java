@@ -24,19 +24,20 @@ public class TeacherService {
 
     public List<TeacherDtoForList> getTeachers(){
 
-        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachers();
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.findAllTeachers();
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
     public TeacherDto getTeacherById(Integer id){
 
-       TeacherEntity teacherEntity = teacherRepository.getTeacherById(id);
+       TeacherEntity teacherEntity = teacherRepository.findTeacherById(id);
        return this.teacherMapper.toDto(teacherEntity);
     }
 
-    public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto) {
-        TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
-        this.teacherRepository.insertTeacher(teacherEntity);
-        return this.teacherMapper.toDto(teacherEntity);
+    public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto){
+           TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
+           this.teacherRepository.addTeacher(teacherEntity);
+           return this.teacherMapper.toDto(teacherEntity);
    }
+
 }

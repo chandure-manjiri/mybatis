@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package mybatis.com.mybatis.Dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,7 +15,4 @@ public class TeacherDto {
     private String phoneNumber;
     private String email;
     private List<SubjectDto> subjectDtoList;
-=======
-package mybatis.com.mybatis.Dto;public class TeacherDto {
->>>>>>> 9a94f47 (changed in mapper xml file for getting entity after saving to database in same query)
 }

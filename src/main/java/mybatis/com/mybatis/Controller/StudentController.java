@@ -2,6 +2,9 @@ package mybatis.com.mybatis.Controller;
 
 import mybatis.com.mybatis.Dto.*;
 import mybatis.com.mybatis.Dto.StudentCreationDto;
+import mybatis.com.mybatis.Dto.StudentDto;
+import mybatis.com.mybatis.Dto.StudentDtoForList;
+import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.StudentRepository;
@@ -43,5 +46,4 @@ public class StudentController {
          StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
          return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
-
 }

@@ -9,12 +9,9 @@ import mybatis.com.mybatis.MapStruct.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import mybatis.com.mybatis.Dto.StudentCreationDto;
-import mybatis.com.mybatis.Entity.StudentEntity;
-import mybatis.com.mybatis.Entity.SubjectEntity;
-import mybatis.com.mybatis.Repository.StudentRepository;
-import mybatis.com.mybatis.MapStruct.StudentMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import mybatis.com.mybatis.Dto.StudentDto;
+import mybatis.com.mybatis.Dto.StudentDtoForList;
+import mybatis.com.mybatis.Dto.SubjectDto;
 
 import java.util.List;
 
@@ -27,11 +24,10 @@ public class StudentService {
     @Autowired
     StudentMapper studentMapper;
 
-
     @Autowired
     SubjectMapper subjectMapper;
 
-    public List<StudentDtoForList> getAllStudent(){
+   public List<StudentDtoForList> getAllStudent(){
         List<StudentEntity> studentEntityList =  this.studentRepository.findAllStudents();
         return this.studentMapper.toDtoList(studentEntityList);
     }
@@ -39,7 +35,7 @@ public class StudentService {
     public StudentDtoForSubject getStudentById(Integer id){
         StudentEntity studentEntity = this.studentRepository.findStudentById(id);
         return this.studentMapper.toDtoForSubject(studentEntity);
-    }
+   }
 
     public StudentDto postStudent(StudentCreationDto studentCreationDto){
         StudentEntity studentEntity = this.studentMapper.toEntity(studentCreationDto);
