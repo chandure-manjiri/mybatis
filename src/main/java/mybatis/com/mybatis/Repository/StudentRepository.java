@@ -14,5 +14,5 @@ public interface StudentRepository {
 
     void insertStudent(StudentEntity studentEntity);
 
-    void assignSubjectsToStudent(@Param("id")Integer id, @Param("subjectEntityList")List<SubjectEntity> subjectEntityList);
+    void assignSubjectsToStudent(@Param("id")Integer id, @Param("subjectEntities")List<SubjectEntity> subjectEntities);
 }

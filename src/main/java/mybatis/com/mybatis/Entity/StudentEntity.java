@@ -18,5 +18,5 @@ public class StudentEntity {
     private String lastName;
     private String gender;
     private Integer age;
-    private List<SubjectEntity> subjectEntityList;
+    private List<SubjectEntity> subjectEntities;
 }

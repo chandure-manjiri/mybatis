@@ -17,5 +17,5 @@ public class TeacherEntity {
     private String phoneNumber;
     private String email;
     @JsonManagedReference
-    private List<SubjectEntity> subjectEntityList;
+    private List<SubjectEntity> subjectEntities;
 }

@@ -18,7 +18,7 @@
         <result column="last_name" property="lastName"/>
         <result column="gender" property="gender"/>
         <result column="age" property="age"/>
-        <collection property="subjectEntityList" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
+        <collection property="subjectEntities" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
                     column="id"
                     select="selectSubjectFromStudentId" />
     </resultMap>
@@ -58,7 +58,7 @@
     <insert id="assignSubjectsToStudent" useGeneratedKeys="true"
             keyProperty="id">
         insert into stud_sub(stud_id, sub_id) values
-        <foreach collection="subjectEntityList" item="subject" separator="," >
+        <foreach collection="subjectEntities" item="subject" separator="," >
             (#{id}, #{subject.id})
         </foreach>
     </insert>

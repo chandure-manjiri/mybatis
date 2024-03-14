@@ -11,7 +11,7 @@
         <result column="age" property="age"/>
         <result column="phone_number" property="phoneNumber"/>
         <result column="email" property="email"/>
-        <collection property="subjectEntityList" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
+        <collection property="subjectEntities" ofType="mybatis.com.mybatis.Entity.SubjectEntity"
                     column="id" select="selectSubjectByTeacherId"/>
     </resultMap>
 
