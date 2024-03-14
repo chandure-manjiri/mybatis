@@ -7,6 +7,7 @@ import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.Repository.TeacherRepository;
 import mybatis.com.mybatis.Service.TeacherService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,12 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
     @GetMapping()
-    public ResponseEntity<List<TeacherDtoForList>> getTeachers(){
-       List<TeacherDtoForList> teacherDtoList = this.teacherService.getTeachers();
+    public ResponseEntity<List<TeacherDtoForList>> getTeachers(@RequestParam(name = "minAge", required = false) Integer minAge ,
+                                                               @RequestParam(name = "maxAge", required = false) Integer maxAge,
+                                                               @RequestParam(name = "gender", required = false) String gender,
+                                                               @RequestParam(name = "subject", required = false) String subject){
+
+        List<TeacherDtoForList> teacherDtoList = this.teacherService.getTeachers(minAge, maxAge, gender, subject);
         return new ResponseEntity<>(teacherDtoList, HttpStatus.OK);
     }
 

@@ -21,9 +21,9 @@ public class TeacherService {
     @Autowired
     TeacherMapper teacherMapper;
 
-    public List<TeacherDtoForList> getTeachers(){
+    public List<TeacherDtoForList> getTeachers(Integer minAge, Integer maxAge, String gender, String subject){
 
-        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachers();
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachers(minAge, maxAge, gender, subject);
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
