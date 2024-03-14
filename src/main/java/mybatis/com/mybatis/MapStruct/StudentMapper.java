@@ -2,6 +2,7 @@ package mybatis.com.mybatis.MapStruct;
 import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Dto.StudentDto;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
+import mybatis.com.mybatis.Dto.StudentDtoForSubject;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -52,6 +53,8 @@ public interface StudentMapper {
     StudentDtoForList toStudentDtoForList(StudentEntity studentEntity);
     List<StudentDtoForList> toDtoList(List<StudentEntity> studentEntityList);
 
-
-
+    @Mapping(source = "id", target = "id")
+    @Mapping(target = "fullName", expression = "java(convertToFullName(studentEntity.getFirstName(), studentEntity.getLastName()))")
+    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    StudentDtoForSubject toDtoForSubject(StudentEntity studentEntity);
 }

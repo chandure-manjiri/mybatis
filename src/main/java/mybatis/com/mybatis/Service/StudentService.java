@@ -1,9 +1,6 @@
 package mybatis.com.mybatis.Service;
 
-import mybatis.com.mybatis.Dto.StudentCreationDto;
-import mybatis.com.mybatis.Dto.StudentDto;
-import mybatis.com.mybatis.Dto.StudentDtoForList;
-import mybatis.com.mybatis.Dto.SubjectDto;
+import mybatis.com.mybatis.Dto.*;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.MapStruct.SubjectMapper;
@@ -31,15 +28,16 @@ public class StudentService {
         return this.studentMapper.toDtoList(studentEntityList);
     }
 
-    public StudentDto getStudentById(Integer id){
+    public StudentDtoForSubject getStudentById(Integer id){
         StudentEntity studentEntity = this.studentRepository.getStudentById(id);
-        return this.studentMapper.toDto(studentEntity);
+        return this.studentMapper.toDtoForSubject(studentEntity);
     }
 
-    public StudentEntity postStudent(StudentCreationDto studentCreationDto){
+    public StudentDto postStudent(StudentCreationDto studentCreationDto){
         StudentEntity studentEntity = this.studentMapper.toEntity(studentCreationDto);
         this.studentRepository.insertStudent(studentEntity);
-        return studentEntity;
+
+        return this.studentMapper.toDto(studentEntity);
     }
 
     public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList){
