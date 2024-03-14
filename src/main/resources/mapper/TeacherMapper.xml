@@ -20,6 +20,20 @@
             resultType="mybatis.com.mybatis.Entity.TeacherEntity">
         select id,first_name, last_name, gender, age, phone_number, email
         from teacher
+        <where>
+            <if test="minAge != null">
+                 age >=#{minAge}
+            </if>
+            <if test="maxAge != null">
+                and #{maxAge} >= age
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="subject != null">
+                and id in (select teacher_id from subject where name = #{subject})
+            </if>
+        </where>
     </select>
 
     <select id="findTeacherById" resultMap="TeacherResultMap" parameterType="java.lang.Integer"
