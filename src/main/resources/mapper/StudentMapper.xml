@@ -55,7 +55,7 @@
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>
 
-    <insert id="assignSubjectsToStudent" useGeneratedKeys="true"
+    <insert id="assignSubjectsToStudent" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity"
             keyProperty="id">
         insert into stud_sub(stud_id, sub_id) values
         <foreach collection="subjectEntities" item="subject" separator="," >
