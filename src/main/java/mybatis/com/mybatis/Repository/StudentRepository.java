@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface StudentRepository {
-    List<StudentEntity> getStudents();
+    List<StudentEntity> findAllStudents();
     //StudentEntity getStudentById(Integer id);
 
-    StudentEntity getStudentById(@Param("id")Integer id);
+    StudentEntity findStudentById(@Param("id")Integer id);
 
-    void insertStudent(StudentEntity studentEntity);
+    void addStudent(StudentEntity studentEntity);
 
     void assignSubjectsToStudent(@Param("id")Integer id, @Param("subjectEntities")List<SubjectEntity> subjectEntities);
 }

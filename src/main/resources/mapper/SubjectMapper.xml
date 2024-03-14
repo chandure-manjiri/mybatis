@@ -11,12 +11,12 @@
         </association>
     </resultMap>
 
-    <select id="getSubjects" resultMap="SubjectResultMap">
+    <select id="findAllSubjects" resultMap="SubjectResultMap">
         select subject.id, subject.name, subject.teacher_id from
         subject
     </select>
 
-    <insert id="insertSubject" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity">
+    <insert id="addSubject" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity">
         insert into subject (name, teacher_id)
         values (#{name}, #{teacherEntity.id})
     </insert>

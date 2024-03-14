@@ -19,13 +19,13 @@ public class SubjectController {
 
     @GetMapping()
     public ResponseEntity<List<SubjectEntity>> getSubjects(){
-       List<SubjectEntity> subjectEntities = this.subjectRepository.getSubjects();
+       List<SubjectEntity> subjectEntities = this.subjectRepository.findAllSubjects();
         return new ResponseEntity<>(subjectEntities, HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<String> postSubject(@RequestBody SubjectEntity subjectEntity){
-        this.subjectRepository.insertSubject(subjectEntity);
+        this.subjectRepository.addSubject(subjectEntity);
         String n = "created";
         return new ResponseEntity<>(n, HttpStatus.CREATED);
     }

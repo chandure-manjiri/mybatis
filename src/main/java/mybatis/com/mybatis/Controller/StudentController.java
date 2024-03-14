@@ -21,19 +21,19 @@ public class StudentController {
 
     @GetMapping()
     public ResponseEntity< List<StudentEntity>> getStudents(){
-        List<StudentEntity> studentEntities = studentRepository.getStudents();
+        List<StudentEntity> studentEntities = studentRepository.findAllStudents();
         return new ResponseEntity<>(studentEntities, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/subjects")
     public ResponseEntity<StudentEntity> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
-        StudentEntity studentEntity= studentRepository.getStudentById(id);
+        StudentEntity studentEntity= studentRepository.findStudentById(id);
         return new ResponseEntity<>(studentEntity, HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<String> postStudent(@RequestBody StudentEntity studentEntity){
-        this.studentRepository.insertStudent(studentEntity);
+        this.studentRepository.addStudent(studentEntity);
         String n = "created";
         return new ResponseEntity<>(n, HttpStatus.CREATED);
     }

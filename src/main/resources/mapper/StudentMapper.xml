@@ -30,13 +30,13 @@
     </resultMap>
 
 
-    <select id="getStudents"
+    <select id="findAllStudents"
             resultMap="StudentSubjectResultMap">
         SELECT student.id, student.first_name, student.last_name,
         student.gender, student.age FROM student
     </select>
     
-    <select id="getStudentById"
+    <select id="findStudentById"
               resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer">
         SELECT student.id, student.first_name, student.last_name,
         student.gender, student.age FROM student WHERE student.id = #{id}
@@ -50,7 +50,7 @@
           (select sub_id from stud_sub where stud_id = #{id})
     </select>
 
-    <insert id="insertStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity">
+    <insert id="addStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity">
         insert into student (first_name, last_name, gender, age)
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>

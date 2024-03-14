@@ -32,13 +32,13 @@
 <!--        <result property="teacherId" column="teacher_id"/>-->
     </resultMap>
 
-    <select id="getTeachers" resultMap="TeacherResultMap"
+    <select id="findAllTeachers" resultMap="TeacherResultMap"
             resultType="mybatis.com.mybatis.Entity.TeacherEntity">
         select id,first_name, last_name, gender, age, phone_number, email
         from teacher
     </select>
 
-    <select id="getTeacherById" resultMap="TeacherResultMap" parameterType="java.lang.Integer"
+    <select id="findTeacherById" resultMap="TeacherResultMap" parameterType="java.lang.Integer"
             resultType="mybatis.com.mybatis.Entity.TeacherEntity">
         select id,first_name, last_name, gender, age, phone_number, email
         from teacher where id = #{id}
@@ -49,5 +49,10 @@
             resultMap="SubjectResultMap">
         select subject.id, subject.name , subject.teacher_id from subject where subject.teacher_id = #{id}
     </select>
+
+    <insert id="addTeacher" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.TeacherEntity">
+        insert into teacher (first_name, last_name, gender, age, phone_number, email)
+        values (#{firstName},#{lastName},#{gender},#{age}, #{phoneNumber}, #{email})
+    </insert>
 
 </mapper>
