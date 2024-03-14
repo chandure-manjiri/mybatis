@@ -1,9 +1,6 @@
 package mybatis.com.mybatis.Controller;
 
-import mybatis.com.mybatis.Dto.StudentCreationDto;
-import mybatis.com.mybatis.Dto.StudentDto;
-import mybatis.com.mybatis.Dto.StudentDtoForList;
-import mybatis.com.mybatis.Dto.SubjectDto;
+import mybatis.com.mybatis.Dto.*;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.StudentRepository;
@@ -29,15 +26,15 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<StudentDto> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
-        StudentDto studentDto= this.studentService.getStudentById(id);
-        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
+        StudentDtoForSubject studentDtoForSubject= this.studentService.getStudentById(id);
+        return new ResponseEntity<>(studentDtoForSubject, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<StudentEntity> postStudent(@RequestBody StudentCreationDto studentCreationDto){
-        StudentEntity studentEntity  = this.studentService.postStudent(studentCreationDto);
-        return new ResponseEntity<>(studentEntity, HttpStatus.CREATED);
+    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentCreationDto studentCreationDto){
+        StudentDto studentDto  = this.studentService.postStudent(studentCreationDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/subjects")
