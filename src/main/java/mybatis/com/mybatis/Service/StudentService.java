@@ -24,18 +24,18 @@ public class StudentService {
     SubjectMapper subjectMapper;
 
     public List<StudentDtoForList> getAllStudent(){
-        List<StudentEntity> studentEntityList =  this.studentRepository.getStudents();
+        List<StudentEntity> studentEntityList =  this.studentRepository.findAllStudents();
         return this.studentMapper.toDtoList(studentEntityList);
     }
 
     public StudentDtoForSubject getStudentById(Integer id){
-        StudentEntity studentEntity = this.studentRepository.getStudentById(id);
+        StudentEntity studentEntity = this.studentRepository.findStudentById(id);
         return this.studentMapper.toDtoForSubject(studentEntity);
     }
 
     public StudentDto postStudent(StudentCreationDto studentCreationDto){
         StudentEntity studentEntity = this.studentMapper.toEntity(studentCreationDto);
-        this.studentRepository.insertStudent(studentEntity);
+        this.studentRepository.addStudent(studentEntity);
 
         return this.studentMapper.toDto(studentEntity);
     }
@@ -43,7 +43,7 @@ public class StudentService {
     public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList){
         List<SubjectEntity> subjectEntityList = this.subjectMapper.toEntityList(subjectDtoList);
         this.studentRepository.assignSubjectsToStudent(id, subjectEntityList);
-        StudentEntity studentEntity = this.studentRepository.getStudentById(id);
+        StudentEntity studentEntity = this.studentRepository.findStudentById(id);
         return this.studentMapper.toDto(studentEntity);
     }
 }

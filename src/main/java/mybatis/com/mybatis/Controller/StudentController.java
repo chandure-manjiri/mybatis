@@ -26,10 +26,10 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
-        StudentDtoForSubject studentDtoForSubject= this.studentService.getStudentById(id);
+    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable (name = "id") Integer id) {
+        StudentDtoForSubject studentDtoForSubject = this.studentService.getStudentById(id);
         return new ResponseEntity<>(studentDtoForSubject, HttpStatus.OK);
-
+    }
 
     @PostMapping()
     public ResponseEntity<StudentDto> postStudent(@RequestBody StudentCreationDto studentCreationDto){
@@ -42,4 +42,5 @@ public class StudentController {
          StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
          return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
+
 }
