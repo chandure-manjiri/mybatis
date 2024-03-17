@@ -1,9 +1,11 @@
 package mybatis.com.mybatis.MapStruct;
+
 import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Dto.StudentDto;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.StudentDtoForSubject;
 import mybatis.com.mybatis.Entity.StudentEntity;
+import mybatis.com.mybatis.MapStruct.SubjectMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface StudentMapper {
+
     @Mapping(target="firstName", expression = "java(convertToFirstName(studentCreationDto))")
     @Mapping(target="lastName", expression = "java(convertToLastName(studentCreationDto))")
     @Mapping(source = "gender", target = "gender")

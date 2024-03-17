@@ -57,4 +57,5 @@ public interface TeacherMapper {
     TeacherDtoForList toTeacherDtoForList(TeacherEntity teacherEntity);
 
     List<TeacherDtoForList> toDtoList(List<TeacherEntity> teacherEntityList);
+
 }

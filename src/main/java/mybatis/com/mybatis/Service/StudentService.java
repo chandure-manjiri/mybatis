@@ -19,7 +19,6 @@ public class StudentService {
 
     @Autowired
     StudentRepository studentRepository;
-
     @Autowired
     StudentMapper studentMapper;
 
@@ -39,7 +38,7 @@ public class StudentService {
     public StudentDto postStudent(StudentCreationDto studentCreationDto){
         StudentEntity studentEntity = this.studentMapper.toEntity(studentCreationDto);
         this.studentRepository.addStudent(studentEntity);
-       return this.studentMapper.toDto(studentEntity);
+        return this.studentMapper.toDto(studentEntity);
      }
 
     public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList) {
