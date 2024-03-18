@@ -1,8 +1,10 @@
 package mybatis.com.mybatis.Controller;
 
+import mybatis.com.mybatis.Dto.*;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 import mybatis.com.mybatis.Repository.StudentRepository;
+import mybatis.com.mybatis.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,33 +17,30 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentRepository studentRepository;
-
-
+    StudentService studentService;
 
     @GetMapping()
-    public ResponseEntity< List<StudentEntity>> getStudents(){
-        List<StudentEntity> studentEntities = studentRepository.findAllStudents();
-        return new ResponseEntity<>(studentEntities, HttpStatus.OK);
+    public ResponseEntity< List<StudentDtoForList>> getStudents(){
+        List<StudentDtoForList> studentDtoList = this.studentService.getAllStudent();
+        return new ResponseEntity<>(studentDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<StudentEntity> getStudentWithSubjectList(@PathVariable (name = "id") Integer id){
-        StudentEntity studentEntity= studentRepository.findStudentById(id);
-        return new ResponseEntity<>(studentEntity, HttpStatus.OK);
+    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable (name = "id") Integer id) {
+        StudentDtoForSubject studentDtoForSubject = this.studentService.getStudentById(id);
+        return new ResponseEntity<>(studentDtoForSubject, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<String> postStudent(@RequestBody StudentEntity studentEntity){
-        this.studentRepository.addStudent(studentEntity);
-        String n = "created";
-        return new ResponseEntity<>(n, HttpStatus.CREATED);
+    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentCreationDto studentCreationDto){
+        StudentDto studentDto  = this.studentService.postStudent(studentCreationDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/subjects")
-    public ResponseEntity<String> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectEntity> subjectEntityList){
-        this.studentRepository.assignSubjectsToStudent(id, subjectEntityList);
-        String n = "get assigned";
-        return new ResponseEntity<>(n, HttpStatus.OK);
+    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList){
+         StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
+         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
+
 }
