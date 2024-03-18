@@ -36,7 +36,7 @@ public interface StudentMapper {
     @Mapping(target = "fullName", expression = "java(convertToFullName(studentEntity.getFirstName(), studentEntity.getLastName()))")
     @Mapping(source = "gender", target = "gender")
     @Mapping(source = "age", target = "age")
-    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    @Mapping(source = "subjectEntities", target = "subjectDtoList")
     StudentDto toDto(StudentEntity studentEntity);
 
     default String convertToFullName(String firstName, String lastname){
@@ -54,6 +54,6 @@ public interface StudentMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(target = "fullName", expression = "java(convertToFullName(studentEntity.getFirstName(), studentEntity.getLastName()))")
-    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    @Mapping(source = "subjectEntities", target = "subjectDtoList")
     StudentDtoForSubject toDtoForSubject(StudentEntity studentEntity);
 }

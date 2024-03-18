@@ -40,7 +40,7 @@ public interface TeacherMapper {
     @Mapping(source = "age", target = "age")
     @Mapping(source = "phoneNumber", target = "phoneNumber")
     @Mapping(source = "email", target = "email")
-    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    @Mapping(source = "subjectEntities", target = "subjectDtoList")
     TeacherDto toDto(TeacherEntity teacherEntity);
 
     @Named("toFullName")
