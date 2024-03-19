@@ -17,6 +17,7 @@ public interface TeacherMapper {
     @Mapping(source = "age", target = "age")
     @Mapping(source = "phoneNumber", target = "phoneNumber")
     @Mapping(source = "email", target = "email")
+    @Mapping(target = "id", ignore = true)
     TeacherEntity toEntity(TeacherCreationDto teacherCreationDto);
 
     default String convertToFirstName(TeacherCreationDto teacherCreationDto) {

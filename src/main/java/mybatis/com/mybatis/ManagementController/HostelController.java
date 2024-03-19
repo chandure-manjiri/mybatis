@@ -1,5 +1,6 @@
 package mybatis.com.mybatis.ManagementController;
 
+import jakarta.validation.Valid;
 import mybatis.com.mybatis.ManagementDto.HostelCreationDto;
 import mybatis.com.mybatis.ManagementDto.HostelDto;
 import mybatis.com.mybatis.ManagementService.HostelService;
@@ -23,7 +24,7 @@ public class HostelController{
     }
 
     @PostMapping("/hostels")
-    public ResponseEntity<HostelDto> createHostel(@RequestBody HostelCreationDto hostelCreationDto){
+    public ResponseEntity<HostelDto> createHostel(@Valid @RequestBody HostelCreationDto hostelCreationDto){
         HostelDto hostelDto = this.hostelService.createHostel(hostelCreationDto);
         return new ResponseEntity<>(hostelDto, HttpStatus.CREATED);
     }

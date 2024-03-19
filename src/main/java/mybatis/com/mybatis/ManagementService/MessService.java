@@ -1,5 +1,6 @@
 package mybatis.com.mybatis.ManagementService;
 
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.ManagementDto.MessCreationDto;
 import mybatis.com.mybatis.ManagementDto.MessDto;
 import mybatis.com.mybatis.ManagementDto.MessOwnersDto;
@@ -38,8 +39,11 @@ public class MessService {
     }
 
 
-    public MessOwnersDto getAllOwners(Integer mess_id){
+    public MessOwnersDto getAllOwners(Integer mess_id) throws ResourceNotFoundException {
         MessEntity messEntity = this.messRepository.findMessByID(mess_id);
+        if(messEntity == null){
+            throw new ResourceNotFoundException("mess with id "+mess_id+" not found");
+        }
         List<MessOwnerEntity> messOwnerEntities = this.messOwnerRepository.findAllMessOwnersByMessId(mess_id);
         return this.messMapper.toMessOwnersDto(messEntity,messOwnerEntities);
     }

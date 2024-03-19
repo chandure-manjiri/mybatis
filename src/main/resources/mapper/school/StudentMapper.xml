@@ -29,7 +29,7 @@
     </select>
     
     <select id="findStudentById"
-              resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer">
+              resultMap="StudentSubjectResultMap" parameterType="java.lang.Integer" resultType="java.util.Optional">
         SELECT student.id, student.first_name, student.last_name,
         student.gender, student.age FROM student WHERE student.id = #{id}
     </select>

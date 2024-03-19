@@ -1,5 +1,7 @@
 package mybatis.com.mybatis.ManagementController;
 
+import jakarta.validation.Valid;
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.ManagementDto.MessOwnerCreationDto;
 import mybatis.com.mybatis.ManagementDto.MessOwnerDto;
 import mybatis.com.mybatis.ManagementDto.MessOwnersDto;
@@ -22,7 +24,7 @@ public class MessOwnerController {
     }
 
     @PostMapping("")
-    public ResponseEntity<MessOwnerDto> createMessOwner(@RequestBody MessOwnerCreationDto messOwnerCreationDto){
+    public ResponseEntity<MessOwnerDto> createMessOwner(@Valid @RequestBody MessOwnerCreationDto messOwnerCreationDto) throws ResourceNotFoundException{
         MessOwnerDto messOwnerDto = this.messOwnerService.createMessOwner(messOwnerCreationDto);
         return new ResponseEntity<>(messOwnerDto, HttpStatus.CREATED);
     }

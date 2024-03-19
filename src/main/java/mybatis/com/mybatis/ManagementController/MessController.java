@@ -1,6 +1,8 @@
 package mybatis.com.mybatis.ManagementController;
 
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import jakarta.validation.Valid;
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.ManagementDto.MessCreationDto;
 import mybatis.com.mybatis.ManagementDto.MessDto;
 import mybatis.com.mybatis.ManagementDto.MessOwnersDto;
@@ -25,13 +27,13 @@ public class MessController {
     }
 
     @PostMapping("/mess")
-    public ResponseEntity<MessDto> createMess(@RequestBody MessCreationDto messCreationDto){
+    public ResponseEntity<MessDto> createMess(@Valid @RequestBody MessCreationDto messCreationDto){
         MessDto messDto = this.messService.createMess(messCreationDto);
         return new ResponseEntity<>(messDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/mess/{mess_id}/owners")
-    public ResponseEntity<MessOwnersDto> getAllOwners(@PathVariable ("mess_id") Integer mess_id){
+    public ResponseEntity<MessOwnersDto> getAllOwners(@PathVariable ("mess_id") Integer mess_id) throws ResourceNotFoundException {
         MessOwnersDto messOwnersDto = this.messService.getAllOwners(mess_id);
         return ResponseEntity.ok(messOwnersDto);
     }

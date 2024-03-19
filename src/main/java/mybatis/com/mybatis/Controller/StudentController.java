@@ -1,12 +1,14 @@
 package mybatis.com.mybatis.Controller;
 
 
+import jakarta.validation.Valid;
 import mybatis.com.mybatis.Dto.*;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Dto.StudentDto;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.SubjectDto;
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,18 +31,18 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/subjects")
-    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<StudentDtoForSubject> getStudentWithSubjectList(@PathVariable(name = "id") Integer id) throws ResourceNotFoundException {
         StudentDtoForSubject studentDtoForSubject = this.studentService.getStudentById(id);
         return new ResponseEntity<>(studentDtoForSubject, HttpStatus.OK);
     }
   @PostMapping()
-    public ResponseEntity<StudentDto> postStudent(@RequestBody StudentCreationDto studentCreationDto){
+    public ResponseEntity<StudentDto> postStudent(@Valid @RequestBody StudentCreationDto studentCreationDto){
         StudentDto studentDto  = this.studentService.postStudent(studentCreationDto);
         return new ResponseEntity<>(studentDto, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/subjects")
-    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList)
+    public ResponseEntity<StudentDto> assignSubjectsToStudent(@PathVariable (name ="id") Integer id,@RequestBody List<SubjectDto> subjectDtoList) throws ResourceNotFoundException
         {
             StudentDto studentDto = this.studentService.assignSubjectsToStudent(id, subjectDtoList);
             return new ResponseEntity<>(studentDto, HttpStatus.OK);
