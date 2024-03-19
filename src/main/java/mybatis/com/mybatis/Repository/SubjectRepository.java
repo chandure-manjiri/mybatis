@@ -1,11 +1,10 @@
 package mybatis.com.mybatis.Repository;
 
-import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
-import mybatis.com.mybatis.config.PostgreSQLConnMapper;
+import mybatis.com.mybatis.config.SchoolDataSource.SchoolDatabaseConnMapper;
 
 import java.util.List;
-@PostgreSQLConnMapper("PostgreSQLSubjectRepo")
+@SchoolDatabaseConnMapper
 public interface SubjectRepository {
     List<SubjectEntity> findAllSubjects();
 
