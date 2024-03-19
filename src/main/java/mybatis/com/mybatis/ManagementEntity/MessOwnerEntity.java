@@ -1,4 +1,4 @@
-package mybatis.com.mybatis.MessEntity;
+package mybatis.com.mybatis.ManagementEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,5 +9,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessOwner {
+public class MessOwnerEntity {
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private Integer age;
+    private String gender;
+    private String contactNumber;
+    private Integer messId;
 }
+
+

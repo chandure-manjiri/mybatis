@@ -1,4 +1,4 @@
-package mybatis.com.mybatis.MessEntity;
+package mybatis.com.mybatis.ManagementEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,5 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hostel {
+public class HostelEntity {
+    private Integer id;
+    private String name;
+    private String hostelType;
+    private String location;
 }
