@@ -1,4 +1,4 @@
-package mybatis.com.mybatis.config;
+package mybatis.com.mybatis.config.SchoolDataSource;
 
 
 import org.springframework.stereotype.Component;
@@ -9,6 +9,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface PostgreSQLConnMapper{
+public @interface SchoolDatabaseConnMapper{
     String value() default "";
 }

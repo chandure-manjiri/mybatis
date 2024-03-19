@@ -1,4 +1,4 @@
-package mybatis.com.mybatis.config;
+package mybatis.com.mybatis.config.ManagementDataSource;
 
 import org.springframework.stereotype.Component;
 
@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface PostgreSQLConnMapper2 {
+public @interface ManagementDatabaseConnMapper {
     String value() default "";
 }
