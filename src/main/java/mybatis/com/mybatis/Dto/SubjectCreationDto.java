@@ -4,5 +4,5 @@ import lombok.Data;
 @Data
 public class SubjectCreationDto {
     private String name;
-    private TeacherCreationDto teacherCreationDto;
+    private Integer teacherId;
 }

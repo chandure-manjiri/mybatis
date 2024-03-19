@@ -21,7 +21,7 @@ public interface SubjectMapper {
     SubjectEntity toEntity(SubjectDto subjectDto);
 
     @Mapping(source = "name", target = "name")
-    @Mapping(source = "teacherCreationDto", target = "teacherEntity")
+    @Mapping(source = "teacherId", target = "teacherEntity.id")
     SubjectEntity toSubjectEntity(SubjectCreationDto subjectCreationDto);
 
     List<SubjectEntity> toEntityList(List<SubjectDto> subjectDtoList);

@@ -42,7 +42,7 @@
           (select sub_id from stud_sub where stud_id = #{id})
     </select>
 
-   <insert id="insertStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity" keyColumn="id">
+   <insert id="addStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity" keyColumn="id">
         insert into student (first_name, last_name, gender, age)
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>
