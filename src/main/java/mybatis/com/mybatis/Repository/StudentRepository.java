@@ -2,10 +2,11 @@ package mybatis.com.mybatis.Repository;
 
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
+import mybatis.com.mybatis.config.SchoolDataSource.SchoolDatabaseConnMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@SchoolDatabaseConnMapper
 public interface StudentRepository {
     List<StudentEntity> findAllStudents();
     //StudentEntity getStudentById(Integer id);

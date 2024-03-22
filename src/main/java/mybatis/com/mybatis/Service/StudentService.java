@@ -6,9 +6,11 @@ import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.SubjectEntity;
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.MapStruct.StudentMapper;
 import mybatis.com.mybatis.MapStruct.SubjectMapper;
 import mybatis.com.mybatis.Repository.StudentRepository;
+import mybatis.com.mybatis.Repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class StudentService {
     StudentMapper studentMapper;
 
     @Autowired
+    SubjectRepository subjectRepository;
+
+    @Autowired
     SubjectMapper subjectMapper;
 
    public List<StudentDtoForList> getAllStudent(){
@@ -30,8 +35,11 @@ public class StudentService {
         return this.studentMapper.toDtoList(studentEntityList);
    }
 
-    public StudentDtoForSubject getStudentById(Integer id){
+    public StudentDtoForSubject getStudentById(Integer id) throws ResourceNotFoundException {
         StudentEntity studentEntity = this.studentRepository.findStudentById(id);
+        if(studentEntity == null){
+            throw new ResourceNotFoundException("student with id "+id+" not found");
+        }
         return this.studentMapper.toDtoForSubject(studentEntity);
    }
 
@@ -41,10 +49,31 @@ public class StudentService {
         return this.studentMapper.toDto(studentEntity);
      }
 
-    public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList) {
-       List<SubjectEntity> subjectEntityList = this.subjectMapper.toEntityList(subjectDtoList);
-        this.studentRepository.assignSubjectsToStudent(id, subjectEntityList);
+    public StudentDto assignSubjectsToStudent( Integer id, List<SubjectDto> subjectDtoList) throws ResourceNotFoundException{
         StudentEntity studentEntity = this.studentRepository.findStudentById(id);
-        return this.studentMapper.toDto(studentEntity);
+        if(studentEntity == null){
+            throw new ResourceNotFoundException("student not found with id "+id);
+        }
+        if(subjectDtoList != null){
+            List<SubjectEntity> subjectEntities  = this.subjectRepository.findAllSubjects();
+            for(SubjectDto subjectDto : subjectDtoList){
+                Integer subId = subjectDto.getId();
+                int flag = 0;
+                for(SubjectEntity subjectEntity : subjectEntities){
+                    if(subjectEntity.getId().equals(subId)){
+                        flag = 1;
+                        break;
+                    }
+                }
+                if(flag == 0){
+                    throw new ResourceNotFoundException("subject with subject Id "+subId+" not exists");
+                }
+            }
+            List<SubjectEntity> subjectEntityList = this.subjectMapper.toEntityList(subjectDtoList);
+
+            this.studentRepository.assignSubjectsToStudent(id, subjectEntityList);
+
+        }
+         return this.studentMapper.toDto(this.studentRepository.findStudentById(id));
     }
 }

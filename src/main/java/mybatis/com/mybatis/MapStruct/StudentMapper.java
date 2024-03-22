@@ -18,6 +18,7 @@ public interface StudentMapper {
     @Mapping(target="lastName", expression = "java(convertToLastName(studentCreationDto))")
     @Mapping(source = "gender", target = "gender")
     @Mapping(source = "age", target = "age")
+    @Mapping(target = "id", ignore = true)
     StudentEntity toEntity(StudentCreationDto studentCreationDto);
 
     default String convertToFirstName(StudentCreationDto studentCreationDto){

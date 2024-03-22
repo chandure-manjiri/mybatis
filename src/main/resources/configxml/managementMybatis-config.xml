@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <typeAlias alias = "HostelEntity" type = "mybatis.com.mybatis.ManagementEntity.HostelEntity"/>
+        <typeAlias alias = "MessEntity" type = "mybatis.com.mybatis.ManagementEntity.MessEntity"/>
+        <typeAlias alias = "MessOwnerEntity" type = "mybatis.com.mybatis.ManagementEntity.MessOwnerEntity"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource = "mapper/school/StudentMapper.xml"/>
+        <mapper resource = "mapper/school/SubjectMapper.xml"/>
+        <mapper resource = "mapper/school/TeacherMapper.xml"/>
+    </mappers>
+
+</configuration>

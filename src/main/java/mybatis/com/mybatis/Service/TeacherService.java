@@ -3,6 +3,7 @@ import mybatis.com.mybatis.Dto.TeacherCreationDto;
 import mybatis.com.mybatis.Dto.TeacherDto;
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
 import mybatis.com.mybatis.Entity.TeacherEntity;
+import mybatis.com.mybatis.Exception.ResourceNotFoundException;
 import mybatis.com.mybatis.MapStruct.TeacherMapper;
 import mybatis.com.mybatis.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,11 @@ public class TeacherService {
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
-    public TeacherDto getTeacherById(Integer id){
+    public TeacherDto getTeacherById(Integer id) throws ResourceNotFoundException {
         TeacherEntity teacherEntity = teacherRepository.findTeacherById(id);
+        if(teacherEntity == null){
+            throw new ResourceNotFoundException("teacher with id "+id+" not found");
+        }
         return this.teacherMapper.toDto(teacherEntity);
     }
 

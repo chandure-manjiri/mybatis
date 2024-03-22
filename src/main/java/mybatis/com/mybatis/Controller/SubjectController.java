@@ -1,5 +1,6 @@
 package mybatis.com.mybatis.Controller;
 
+import jakarta.validation.Valid;
 import mybatis.com.mybatis.Dto.SubjectCreationDto;
 import mybatis.com.mybatis.Dto.SubjectDto;
 import mybatis.com.mybatis.Service.SubjectService;
@@ -23,7 +24,7 @@ public class SubjectController {
    }
 
      @PostMapping()
-    public ResponseEntity<SubjectDto> postSubject(@RequestBody SubjectCreationDto subjectCreationDto){
+    public ResponseEntity<SubjectDto> postSubject(@Valid @RequestBody SubjectCreationDto subjectCreationDto){
          SubjectDto subjectDto = this.subjectService.insertSubject(subjectCreationDto);
          return new ResponseEntity<>(subjectDto, HttpStatus.CREATED);
    }
