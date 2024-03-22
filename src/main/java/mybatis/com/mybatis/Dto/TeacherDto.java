@@ -1,6 +1,4 @@
 package mybatis.com.mybatis.Dto;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import mybatis.com.mybatis.Entity.SubjectEntity;
 

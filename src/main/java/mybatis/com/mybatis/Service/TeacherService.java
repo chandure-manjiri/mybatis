@@ -1,9 +1,7 @@
 package mybatis.com.mybatis.Service;
-
 import mybatis.com.mybatis.Dto.TeacherCreationDto;
 import mybatis.com.mybatis.Dto.TeacherDto;
 import mybatis.com.mybatis.Dto.TeacherDtoForList;
-import mybatis.com.mybatis.Entity.StudentEntity;
 import mybatis.com.mybatis.Entity.TeacherEntity;
 import mybatis.com.mybatis.MapStruct.TeacherMapper;
 import mybatis.com.mybatis.Repository.TeacherRepository;
@@ -21,22 +19,20 @@ public class TeacherService {
     @Autowired
     TeacherMapper teacherMapper;
 
-    public List<TeacherDtoForList> getTeachers(){
-
-        List<TeacherEntity> teacherEntityList = this.teacherRepository.getTeachers();
+    public List<TeacherDtoForList> getTeachers(Integer minAge, Integer maxAge, String gender, String subject){
+        List<TeacherEntity> teacherEntityList = this.teacherRepository.findAllTeachers(minAge, maxAge, gender, subject);
         return this.teacherMapper.toDtoList(teacherEntityList);
     }
 
     public TeacherDto getTeacherById(Integer id){
-
-       TeacherEntity teacherEntity = teacherRepository.getTeacherById(id);
-       return this.teacherMapper.toDto(teacherEntity);
+        TeacherEntity teacherEntity = teacherRepository.findTeacherById(id);
+        return this.teacherMapper.toDto(teacherEntity);
     }
 
     public TeacherDto insertTeacher(TeacherCreationDto teacherCreationDto){
            TeacherEntity teacherEntity = this.teacherMapper.toEntity(teacherCreationDto);
-           this.teacherRepository.insertTeacher(teacherEntity);
+           this.teacherRepository.addTeacher(teacherEntity);
            return this.teacherMapper.toDto(teacherEntity);
-    }
+   }
 
 }

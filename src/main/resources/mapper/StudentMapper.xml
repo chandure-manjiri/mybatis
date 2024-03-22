@@ -21,13 +21,6 @@
                     column="id"
                     select="selectSubjectFromStudentId" />
     </resultMap>
-    
-    <resultMap id="SubjectResultMap" type="mybatis.com.mybatis.Entity.SubjectEntity">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-<!--    teacher should return // after mapper only teacher name sholud be available   -->
-    </resultMap>
-
 
     <select id="findAllStudents"
             resultMap="StudentSubjectResultMap">
@@ -43,17 +36,17 @@
 
     <select id="selectSubjectFromStudentId"
             parameterType="java.lang.Integer"
-            resultMap="SubjectResultMap"
+            resultMap="mybatis.com.mybatis.Repository.SubjectRepository.SubjectResultMap"
             resultType="mybatis.com.mybatis.Entity.SubjectEntity">
          select subject.id, subject.name from subject where id in
           (select sub_id from stud_sub where stud_id = #{id})
     </select>
 
-
-    <insert id="insertStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity" keyColumn="id">
+   <insert id="addStudent" keyProperty="id" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.StudentEntity" keyColumn="id">
         insert into student (first_name, last_name, gender, age)
         values (#{firstName},#{lastName},#{gender},#{age})
     </insert>
+
 
     <insert id="assignSubjectsToStudent" useGeneratedKeys="true" parameterType="mybatis.com.mybatis.Entity.SubjectEntity" keyProperty="id">
         insert into stud_sub(stud_id, sub_id) values

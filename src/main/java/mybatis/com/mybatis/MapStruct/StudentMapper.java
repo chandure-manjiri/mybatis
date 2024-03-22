@@ -1,14 +1,15 @@
 package mybatis.com.mybatis.MapStruct;
+
 import mybatis.com.mybatis.Dto.StudentCreationDto;
 import mybatis.com.mybatis.Dto.StudentDto;
 import mybatis.com.mybatis.Dto.StudentDtoForList;
 import mybatis.com.mybatis.Dto.StudentDtoForSubject;
 import mybatis.com.mybatis.Entity.StudentEntity;
+import mybatis.com.mybatis.MapStruct.SubjectMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-
 import java.util.List;
+
 
 @Mapper(componentModel = "spring", uses = SubjectMapper.class)
 public interface StudentMapper {
@@ -26,8 +27,8 @@ public interface StudentMapper {
         return studentCreationDto.getFullName().substring(0, studentCreationDto.getFullName().indexOf(" "));
     }
 
-    default String convertToLastName(StudentCreationDto studentCreationDto){
-        if (studentCreationDto.getFullName() == null){
+   default String convertToLastName(StudentCreationDto studentCreationDto){
+       if (studentCreationDto.getFullName() == null){
             return null;
         }
         return studentCreationDto.getFullName().substring(studentCreationDto.getFullName().indexOf(" ") + 1);
@@ -37,7 +38,7 @@ public interface StudentMapper {
     @Mapping(target = "fullName", expression = "java(convertToFullName(studentEntity.getFirstName(), studentEntity.getLastName()))")
     @Mapping(source = "gender", target = "gender")
     @Mapping(source = "age", target = "age")
-    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    @Mapping(source = "subjectEntities", target = "subjectDtoList")
     StudentDto toDto(StudentEntity studentEntity);
 
     default String convertToFullName(String firstName, String lastname){
@@ -55,6 +56,6 @@ public interface StudentMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(target = "fullName", expression = "java(convertToFullName(studentEntity.getFirstName(), studentEntity.getLastName()))")
-    @Mapping(source = "subjectEntityList", target = "subjectDtoList")
+    @Mapping(source = "subjectEntities", target = "subjectDtoList")
     StudentDtoForSubject toDtoForSubject(StudentEntity studentEntity);
 }
